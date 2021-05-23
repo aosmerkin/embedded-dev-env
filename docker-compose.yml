@@ -1,0 +1,18 @@
+version: '3'
+services:
+  embedded-dev-env:
+    build:
+      context: .
+      args:
+        - developer_user_id=${DEVELOPER_USER_ID}
+        - developer_group_id=${DEVELOPER_GROUP_ID}
+
+    hostname: embedded-dev-env
+    container_name: embedded-dev-env
+    image: embedded-dev-env
+    volumes:
+      - ${WORKSPACE}:/workspace
+      - /etc/localtime:/etc/localtime:ro
+    user: ${DEVELOPER_USER_ID}:${DEVELOPER_GROUP_ID}
+    command: sleep infinity
+    stop_signal: SIGKILL
